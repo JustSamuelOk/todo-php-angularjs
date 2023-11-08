@@ -5,10 +5,19 @@ app.controller('todoController', function ($scope, $http) {
     $scope.newTodoTitle = "";
     $scope.newTodoDescription = "";
     $scope.todos = [];
+    $scope.todo = {};
+
+    function compareById(a, b) {
+        if (a.id < b.id)
+            return -1;
+        if (a.id > b.id)
+            return 1;
+        return 0;
+    }
 
     $scope.getTodos = function () {
         $http.get(apiUrl).then(function (response) {
-            $scope.todos = response.data;
+            $scope.todos = response.data.sort(compareById);
         });
     }
 
@@ -27,6 +36,12 @@ app.controller('todoController', function ($scope, $http) {
     $scope.deleteTodo = function (id) {
         $http.post(apiUrl + '/' + id + '/delete').then(function () {
 
+            $scope.getTodos();
+        });
+    }
+
+    $scope.changeTodoCompletion = function (id) {
+        $http.post(apiUrl + '/' + id + '/complete').then(function () {
             $scope.getTodos();
         });
     }

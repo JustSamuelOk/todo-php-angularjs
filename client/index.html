@@ -33,9 +33,10 @@
             <!-- Task List Starts Here -->
             <ul class="list-group" ng-init="getTodos()" ng-show="todos.length > 0">
                 <li class="list-group-item clearfix task" ng-repeat="todo in todos">
-                    <p class="lead">{{todo.title}} - {{todo.id}}</p>
+                    <p class="lead">{{todo.title}} - Completed: {{todo.completed}}</p>
                     <p>{{todo.description}}</p>
                     <button class="btn btn-danger" type="button" ng-click="deleteTodo(todo.id)"></button>
+                    <button class="btn btn-secondary" type="button" ng-click="changeTodoCompletion(todo.id)"></button>
                 </li>
             </ul>
             <!-- Task List Ends Here -->
