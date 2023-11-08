@@ -11,7 +11,7 @@ composer install
 docker compose up -d
 symfony server:start
 ```
-This will install the project depencies, start the DB server in Docker, and then start the back-end PHP server.
+This will install the project dependencies, start the DB server in Docker, and then start the back-end PHP server.
 
 To start the front-end server, write  
 ```
