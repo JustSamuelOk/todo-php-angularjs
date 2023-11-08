@@ -38,7 +38,7 @@ class TodoController extends AbstractController
         return $this->json($todo);
     }
 
-    #[Route(path: "/{id}", name: "editTodoAction", methods: ["PUT"])]
+    #[Route(path: "/{id}", name: "editTodoAction", methods: ["POST"])]
     function editTodoAction(EntityManagerInterface $em, int $id, Request $request): Response
     {
         $todo = $em->getRepository(Todo::class)->find($id);
@@ -58,7 +58,7 @@ class TodoController extends AbstractController
         return $this->redirectToRoute('todos_getTodosAction');
     }
 
-    #[Route(path: "/{id}/complete", name: "changeCompletionStatusAction", methods: ["PUT"])]
+    #[Route(path: "/{id}/complete", name: "changeCompletionStatusAction", methods: ["POST"])]
     function changeCompletionStatusAction(EntityManagerInterface $em, int $id): Response
     {
         $todo = $em->getRepository(Todo::class)->find($id);
@@ -73,7 +73,7 @@ class TodoController extends AbstractController
         return $this->redirectToRoute('todos_getTodosAction');
     }
 
-    #[Route(path: "/{id}", name: "deleteTodoAction", methods: ["DELETE"])]
+    #[Route(path: "/{id}/delete", name: "deleteTodoAction", methods: ["POST"])]
     function deleteTodoAction(EntityManagerInterface $em, int $id): Response
     {
         $todo = $em->getRepository(Todo::class)->find($id);
